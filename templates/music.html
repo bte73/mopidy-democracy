@@ -63,15 +63,15 @@
     {% endwith %}
     <div id="messages2">
     </div>
-
-    <div class="col-xs-6">
-        <h2>Now Playing:</h2>
-        <img id="album-art" width="500"
-             src="/static/album.png"
-             alt="No data"/>
-        <h3 id="song-title">Nothing Playing</h3>
-        <h4 id="song-artist"></h4>
-        {% if current_user.admin %}
+    <div class="col-sm-6">
+        <div class="row" id="now-playing-row">
+            <h2>Now Playing:</h2>
+            <img id="album-art" width="500"
+                 src="/static/album.png"
+                 alt="No data"/>
+            <h3 id="song-title">Nothing Playing</h3>
+            <h4 id="song-artist"></h4>
+            {% if current_user.admin %}
             <div class="input-group">
         <span class="input-group-btn">
             <button id="play" class="btn btn-primary ctl">Play</button>
@@ -90,25 +90,41 @@
             </div>
             <div class="input-group">
             </div>
-        {% endif %}
-        <h2>Up Next</h2>
-        <ul style="margin-top:25px;" id="queue" class="list-group">
-        </ul>
-        <hr>
-        <h3>Requests</h3>
-        <ul style="margin-top:25px;" id="requests" class="list-group">
-        </ul>
+            {% endif %}
+            <h2>Up Next</h2>
+            <ul style="margin-top:25px;" id="queue" class="list-group">
+            </ul>
+            <hr>
+        </div>
+        <div class="row" id="requests-row">
+            <h3>Requests</h3>
+            <ul style="margin-top:25px;" id="requests" class="list-group"></ul>
+        </div>
     </div>
-<br><br><br>
-    <div class="col-xs-6">
-        {% if current_user.is_authenticated %}
+    <div class="col-sm-6">
+        <div class="row" id="chat-row">
+            {% if current_user.is_authenticated %}
+            <div class="panel panel-primary" id="chat-div">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Chat</h3>
+                </div>
+                <div id="chat-messages" class="panel-body">
+                </div>
+                <div class="input-group" style="width:100%">
+                    <input type="text" style="width:100%" maxlength="80" class="form-control" id="chat-msg" placeholder="Enter to send">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row" id="search-row">
+            {% if current_user.is_authenticated %}
             <input id="search" type="text" class="form-control" placeholder="Search for songs, artists, albums" aria-describedby="basic-addon1">
             <div id="loading" class="progress progress-striped active">
                 <div class="progress-bar progress-bar-info" style="width: 100%"></div>
             </div>
             <ul style="margin-top:25px;" id="results" class="list-group">
             </ul>
-        {% else %}
+            {% else %}
             <h2>Log In</h2>
             <p>By logging in, you can request and vote on music!</p>
             <form action="/login" method="post">
@@ -120,21 +136,8 @@
                 <br>
                 <input type="submit" class="btn btn-lg btn-primary" value="Go!">
             </form>
-        {% endif %}
-    </div>
-    <div class="col-xs-6">
-        {% if current_user.is_authenticated %}
-            <div class="panel panel-primary" id="chat-div">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Chat</h3>
-                </div>
-                <div id="chat-messages" class="panel-body">
-                </div>
-                <div class="input-group" style="width:100%">
-                    <input type="text" style="width:100%" maxlength="120" class="form-control" id="chat-msg" placeholder="Enter to send">
-                </div>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 </div>
 <script src="/static/jquery.min.js"></script>

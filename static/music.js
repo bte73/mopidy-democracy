@@ -30,7 +30,7 @@ ws.on('tracks', function(tracks) {
         if (t != null) {
             t = t.track;
             var votes = t.votes != undefined ? t.votes : 0;
-            $('#queue').append(t.name + ' - ' + t.artists[0].name + '<a hidden class="songvote" id="upvote-' + t.uri + '" title="Upvote"><span class="fa fa-thumbs-up"></span></a><a hidden id="downvote-' + t.uri + '" title="Downvote" class="songvote text-danger"><span class="fa fa-thumbs-down"></span></a><span hidden id="' + t.uri.split(':')[2] + '">' + votes + '</span><br>');
+            $('#queue').append('<li>"' + t.name + ' - ' + t.artists[0].name + '"<a hidden class="songvote" id="upvote-' + t.uri + '" title="Upvote"><span class="fa fa-thumbs-up"></span></a><a hidden id="downvote-' + t.uri + '" title="Downvote" class="songvote text-danger"><span class="fa fa-thumbs-down"></span></a><span hidden id="' + t.uri.split(':')[2] + '">' + votes + '</span></li>');
         }
     });
 });
@@ -38,7 +38,7 @@ ws.on('tracks', function(tracks) {
 ws.on('requests', function(requests) {
     $('#requests').empty();
     requests.forEach(function (t) {
-        $('#requests').append(t.title + ' - ' + t.artist + '<a class="songvote" id="upvote-' + t.uri + '" title="Upvote"><span class="fa fa-thumbs-up"></span></a><a id="downvote-' + t.uri + '" title="Downvote" class="songvote text-danger"><span class="fa fa-thumbs-down"></span></a><span id="' + t.uri.split(':')[2] + '">' + t.votes + '</span><br>');
+        $('#requests').append('<li>"' + t.title + ' - ' + t.artist + '"<a class="songvote" id="upvote-' + t.uri + '" title="Upvote"><span class="fa fa-thumbs-up"></span></a><a id="downvote-' + t.uri + '" title="Downvote" class="songvote text-danger"><span class="fa fa-thumbs-down"></span></a><span id="' + t.uri.split(':')[2] + '">' + t.votes + '</span></li>');
     });
 });
 
